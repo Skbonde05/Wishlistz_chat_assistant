@@ -475,8 +475,8 @@ body.light-mode .user-message .message-content {
   left: 0 !important;
   right: 0 !important;
   bottom: 12px !important;
-  height: auto !important;
-  max-height: calc(100vh - 24px) !important; /* ✅ prevents top cutoff */
+  height: calc(100vh - 24px) !important;       /* ✅ fixed height for mobile */
+  max-height: calc(100vh - 24px) !important;   /* ✅ prevents overflow */
   border-radius: 16px !important;
   overflow: hidden !important;
   pointer-events: auto;
