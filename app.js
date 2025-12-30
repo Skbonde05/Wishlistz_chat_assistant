@@ -1,5 +1,3 @@
-// Wishlistz Chatbot JavaScript
-
 // DOM Elements
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
@@ -299,14 +297,27 @@ themeToggle.addEventListener('click', () => {
   themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌞' : '🌓';
 });
 
-// Minimize and restore
-minimizeButton.addEventListener('click', () => {
-  chatContainer.style.display = 'none';
-  minimizedChat.classList.remove('hidden');
-});
+// ================= FULLSCREEN OPEN / CLOSE LOGIC =================
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
+// OPEN CHAT
 minimizedChat.addEventListener('click', () => {
   chatContainer.style.display = 'flex';
   minimizedChat.classList.add('hidden');
+
+  // 📱 Mobile → fullscreen
+  if (isMobile()) {
+    chatContainer.classList.add('fullscreen');
+  }
+});
+
+// MINIMIZE CHAT
+minimizeButton.addEventListener('click', () => {
+  chatContainer.classList.remove('fullscreen');
+  chatContainer.style.display = 'none';
+  minimizedChat.classList.remove('hidden');
 });
 
 // Quick actions
