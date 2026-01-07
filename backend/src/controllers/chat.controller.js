@@ -115,7 +115,27 @@ export const chatHandler = async (req, res) => {
        7️⃣ WISHLIST COMMANDS (DB)
     ========================== */
 
-    // ADD ITEM
+    // ADD ITEM - Fix 1: Move this outside of planner check
+    if (lowerMessage.includes("add") && lowerMessage.includes("first")) {
+      const items = session.context.lastItems;
+      if (!items?.length) {
+        return sendReply(res, userId, "There's nothing to add yet 😊");
+      }
+
+      const item = items[0];
+
+      await Wishlist.create({
+        userId,
+        productId: item._id || item.id,
+        name: item.name,
+        price: item.price,
+        images: item.images
+      });
+
+      return sendReply(res, userId, `❤️ ${item.name} added to your wishlist.`);
+    }
+
+    // ADD ITEM BY INDEX
     if (lowerMessage.includes("add")) {
       const index = getIndexFromText(lowerMessage);
       const lastItems = session.context.lastItems || [];
@@ -130,24 +150,31 @@ export const chatHandler = async (req, res) => {
 
       await Wishlist.findOneAndUpdate(
         { userId },
-        { $addToSet: { products: lastItems[index].id } },
-        { upsert: true }
+        { 
+          $addToSet: { 
+            products: {
+              productId: lastItems[index]._id || lastItems[index].id,
+              name: lastItems[index].name,
+              price: lastItems[index].price,
+              images: lastItems[index].images
+            }
+          } 
+        },
+        { upsert: true, new: true }
       );
 
       return sendReply(
         res,
         userId,
-        `❤️ "${lastItems[index].name}" added to your wishlist!`
+        `❤️ ${lastItems[index].name} added to your wishlist.`
       );
     }
 
-    // SHOW WISHLIST
-    if (lowerMessage.includes("show my wishlist")) {
-      const wishlist = await Wishlist
-        .findOne({ userId })
-        .populate("products");
+    // SHOW WISHLIST - Fix 2: Add SHOW_WISHLIST intent handling
+    if (lowerMessage.includes("show my wishlist") || lowerMessage.includes("show wishlist")) {
+      const wishlist = await Wishlist.findOne({ userId });
 
-      if (!wishlist || wishlist.products.length === 0) {
+      if (!wishlist || !wishlist.products || wishlist.products.length === 0) {
         return sendReply(res, userId, "📝 Your wishlist is empty.");
       }
 
@@ -156,7 +183,8 @@ export const chatHandler = async (req, res) => {
         title: "❤️ Your Wishlist",
         items: wishlist.products.map(p => ({
           name: p.name,
-          reason: `₹${p.price}`
+          reason: `₹${p.price}`,
+          imageUrl: p.images?.[0] || ""
         }))
       });
     }
@@ -164,27 +192,51 @@ export const chatHandler = async (req, res) => {
     // REMOVE ITEM
     if (lowerMessage.includes("remove")) {
       const index = getIndexFromText(lowerMessage);
-      const wishlist = await Wishlist
-        .findOne({ userId })
-        .populate("products");
+      const wishlist = await Wishlist.findOne({ userId });
 
-      if (!wishlist || index === null || !wishlist.products[index]) {
+      if (!wishlist || !wishlist.products || wishlist.products.length === 0) {
+        return sendReply(res, userId, "Your wishlist is empty.");
+      }
+
+      if (index === null || !wishlist.products[index]) {
         return sendReply(res, userId, "Item not found in your wishlist.");
       }
 
-      await Wishlist.updateOne(
-        { userId },
-        { $pull: { products: wishlist.products[index]._id } }
-      );
+      // Remove the item at the specified index
+      wishlist.products.splice(index, 1);
+      await wishlist.save();
 
       return sendReply(res, userId, "🗑️ Item removed from your wishlist.");
     }
 
     /* ==========================
-       8️⃣ START NEW PLANNERS
+       8️⃣ INTENT DETECTION
     ========================== */
     const intent = detectIntent(userMessage);
 
+    // Handle SHOW_WISHLIST intent - Fix 3: Add the requested intent handler
+    if (intent === "SHOW_WISHLIST") {
+      const wishlist = await Wishlist.findOne({ userId });
+
+      if (!wishlist || !wishlist.products || wishlist.products.length === 0) {
+        return sendReply(res, userId, "Your wishlist is empty 💔");
+      }
+
+      return sendReply(res, userId, {
+        type: "PLANNER",
+        title: "❤️ Your Wishlist",
+        items: wishlist.products.map(item => ({
+          name: item.name,
+          price: item.price,
+          imageUrl: item.images?.[0] || "",
+          reason: `₹${item.price}`
+        }))
+      });
+    }
+
+    /* ==========================
+       9️⃣ START NEW PLANNERS
+    ========================== */
     if (intent === "GIFT_PLANNER") {
       session.lastIntent = "GIFT_PLANNER";
       session.context = {};
@@ -207,14 +259,42 @@ export const chatHandler = async (req, res) => {
     }
 
     /* ==========================
-       9️⃣ DEFAULT RESPONSE
+       10️⃣ ADD_FIRST_ITEM INTENT HANDLING
     ========================== */
-   return sendReply(
-  res,
-  userId,
-  "Hi 👋 I can help you plan gifts 🎁, trips 🧳, or event themes 🎨. What would you like to do?"
-);
+    if (intent === "ADD_FIRST_ITEM") {
+      const items = session.context.lastItems;
+      if (!items?.length) {
+        return sendReply(res, userId, "There's nothing to add yet 😊");
+      }
 
+      const item = items[0];
+
+      await Wishlist.findOneAndUpdate(
+        { userId },
+        { 
+          $addToSet: { 
+            products: {
+              productId: item._id || item.id,
+              name: item.name,
+              price: item.price,
+              images: item.images
+            }
+          } 
+        },
+        { upsert: true, new: true }
+      );
+
+      return sendReply(res, userId, `❤️ ${item.name} added to your wishlist.`);
+    }
+
+    /* ==========================
+       11️⃣ DEFAULT RESPONSE
+    ========================== */
+    return sendReply(
+      res,
+      userId,
+      "Hi 👋 I can help you plan gifts 🎁, trips 🧳, or event themes 🎨. What would you like to do?"
+    );
 
   } catch (err) {
     console.error("Chat error:", err);
