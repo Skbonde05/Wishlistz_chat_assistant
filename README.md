@@ -13,7 +13,7 @@ The project is divided into **Frontend** and **Backend**.
 https://wishlistz-chat-assistant-weld.vercel.app/
 ### Backend
 https://wishlistz-chat-assistant-jysd.onrender.com/
----
+
 
 ## 🧱 Tech Stack
 
