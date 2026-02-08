@@ -7,6 +7,7 @@ import productRoutes from "./routes/product.routes.js";
 import chatRoutes from "./routes/chat.routes.js";
 import plannerRoutes from "./routes/planner.routes.js";
 import navigationRoutes from "./routes/navigate.routes.js";
+import recommendRoutes from "./routes/recommendRoute.js";
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use("/api/products", productRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/planner", plannerRoutes);
 app.use("/api/navigate", navigationRoutes);
+app.use("/api/recommend", recommendRoutes);
 
 export default app;

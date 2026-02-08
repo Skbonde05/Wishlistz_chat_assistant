@@ -1,13 +1,13 @@
 // DOM Elements
-const messageInput = document.getElementById('messageInput');
-const sendButton = document.getElementById('sendButton');
-const chatMessages = document.getElementById('chatMessages');
-const attachButton = document.getElementById('attachButton');
-const fileInput = document.getElementById('fileInput');
-const chatContainer = document.getElementById('chatContainer');
-const minimizeButton = document.getElementById('minimizeButton');
-const minimizedChat = document.getElementById('minimizedChat');
-const themeToggle = document.getElementById('themeToggle');
+const messageInput = document.getElementById("messageInput");
+const sendButton = document.getElementById("sendButton");
+const chatMessages = document.getElementById("chatMessages");
+const attachButton = document.getElementById("attachButton");
+const fileInput = document.getElementById("fileInput");
+const chatContainer = document.getElementById("chatContainer");
+const minimizeButton = document.getElementById("minimizeButton");
+const minimizedChat = document.getElementById("minimizedChat");
+const themeToggle = document.getElementById("themeToggle");
 
 // FAQ/Home Elements
 const homeScreen = document.getElementById("homeScreen");
@@ -23,10 +23,12 @@ const chatFooterBrand = document.getElementById("chatFooterBrand");
 const quickActionsContainer = document.querySelector(".quick-actions");
 
 // ================= BACKEND CONFIG =================
-const BACKEND_CHAT_API = "https://wishlistz-chat-assistant-jysd.onrender.com/api/chat";
+const BACKEND_CHAT_API =
+  "https://wishlistz-chat-assistant-jysd.onrender.com/api/chat";
 
 // FAQ DATA
 const FAQ_QUESTIONS = [
+  "I need help choosing clothes for myself.",
   "How do I create an account on Wishlistz?",
   "How can I add products to my wishlist?",
   "Can I add products from Amazon/Flipkart links?",
@@ -44,7 +46,7 @@ const FAQ_QUESTIONS = [
   "How do I report a wrong product or duplicate listing?",
   "How do I reset or clear my chat?",
   "Is my wishlist private or public?",
-  "How do I delete my Wishlistz account?"
+  "How do I delete my Wishlistz account?",
 ];
 
 // Bot Responses
@@ -62,21 +64,21 @@ const botResponses = [
   "More styles available 👗👔",
   "Item saved successfully ✔️",
   "Shop smart with Wishlistz 🛒",
-  "What would you like to add?"
+  "What would you like to add?",
 ];
 
 const fileResponses = [
   "📎 Looks like a shirt 👕 Added to your wishlist",
   "✅ Beautiful! Dress saved successfully.",
   "✨ Men's product added 👔.",
-  "🎨 Product image saved to wishlist ❤️!"
+  "🎨 Product image saved to wishlist ❤️!",
 ];
 
 const imageResponses = [
   "✅ Looks like a shirt 👕 Added to your wishlist",
   "📸 Beautiful! Dress saved successfully.",
   "✨ Men's product added 👔.",
-  "🎨 Product image saved to wishlist ❤️!"
+  "🎨 Product image saved to wishlist ❤️!",
 ];
 
 const QUICK_ACTION_EMOJIS = {
@@ -87,56 +89,56 @@ const QUICK_ACTION_EMOJIS = {
   "suggest a gift": "🎁",
 
   // Gift planner
-  "friend": "👫",
-  "mother": "👩",
-  "father": "👨",
-  "partner": "❤️",
-  "sibling": "🧑‍🤝‍🧑",
+  friend: "👫",
+  mother: "👩",
+  father: "👨",
+  partner: "❤️",
+  sibling: "🧑‍🤝‍🧑",
 
   // Age
-  "10": "🧒",
-  "18": "🎓",
-  "25": "🧑",
-  "30": "👨‍💼",
-  "skip": "⏭️",
+  10: "🧒",
+  18: "🎓",
+  25: "🧑",
+  30: "👨‍💼",
+  skip: "⏭️",
 
   // Budget
-  "1000": "💰",
-  "2000": "💰",
-  "3000": "💰",
-  "5000": "💰",
+  1000: "💰",
+  2000: "💰",
+  3000: "💰",
+  5000: "💰",
 
   // Trip planner
-  "delhi": "🏙️",
-  "goa": "🏖️",
-  "manali": "🏔️",
-  "bangalore": "🌆",
-  "2": "📆",
-  "3": "📆",
-  "5": "📆",
-  "7": "📆",
-  "summer": "☀️",
-  "winter": "❄️",
-  "monsoon": "🌧️",
-  "any": "📅",
-  "work": "💼",
-  "casual": "😎",
+  delhi: "🏙️",
+  goa: "🏖️",
+  manali: "🏔️",
+  bangalore: "🌆",
+  2: "📆",
+  3: "📆",
+  5: "📆",
+  7: "📆",
+  summer: "☀️",
+  winter: "❄️",
+  monsoon: "🌧️",
+  any: "📅",
+  work: "💼",
+  casual: "😎",
 
   // Theme planner
-  "birthday": "🎂",
-  "wedding": "💍",
-  "anniversary": "💖",
-  "kids": "🧒",
-  "adults": "🧑",
-  "mixed": "👨‍👩‍👧‍👦",
-  "fun": "🎉",
-  "classy": "✨",
-  "traditional": "🪔",
+  birthday: "🎂",
+  wedding: "💍",
+  anniversary: "💖",
+  kids: "🧒",
+  adults: "🧑",
+  mixed: "👨‍👩‍👧‍👦",
+  fun: "🎉",
+  classy: "✨",
+  traditional: "🪔",
 
   // Actions
   "add first one": "➕",
   "show wishlist": "❤️",
-  "reset": "🔄",
+  reset: "🔄",
   "add to wishlist": "❤️",
   "show me more": "👀",
   "share with friend": "📤",
@@ -144,17 +146,17 @@ const QUICK_ACTION_EMOJIS = {
   "frequently asked questions": "❓",
 
   // General
-  "yes": "✅",
-  "no": "❌",
-  "maybe": "🤔",
-  "help": "🆘",
-  "search": "🔍",
-  "price": "💰",
-  "rating": "⭐",
-  "buy": "🛒",
-  "save": "💾",
-  "share": "📤",
-  "like": "❤️"
+  yes: "✅",
+  no: "❌",
+  maybe: "🤔",
+  help: "🆘",
+  search: "🔍",
+  price: "💰",
+  rating: "⭐",
+  buy: "🛒",
+  save: "💾",
+  share: "📤",
+  like: "❤️",
 };
 
 // ================= HELPERS =================
@@ -162,43 +164,45 @@ function getCurrentTime() {
   const now = new Date();
   let hours = now.getHours();
   let minutes = now.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const ampm = hours >= 12 ? "PM" : "AM";
   hours = hours % 12 || 12;
-  minutes = minutes < 10 ? '0' + minutes : minutes;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
   return `${hours}:${minutes} ${ampm}`;
 }
 
 function getFileExtension(filename) {
-  return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2).toLowerCase();
+  return filename
+    .slice(((filename.lastIndexOf(".") - 1) >>> 0) + 2)
+    .toLowerCase();
 }
 
 function getFileIcon(extension) {
   const iconMap = {
-    'pdf': '📄',
-    'doc': '📝',
-    'docx': '📝',
-    'txt': '📃',
-    'jpg': '🖼️',
-    'jpeg': '🖼️',
-    'png': '🖼️',
-    'gif': '🖼️',
-    'svg': '🖼️',
-    'webp': '🖼️'
+    pdf: "📄",
+    doc: "📝",
+    docx: "📝",
+    txt: "📃",
+    jpg: "🖼️",
+    jpeg: "🖼️",
+    png: "🖼️",
+    gif: "🖼️",
+    svg: "🖼️",
+    webp: "🖼️",
   };
-  return iconMap[extension] || '📎';
+  return iconMap[extension] || "📎";
 }
 
 function formatFileSize(bytes) {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) return "0 Bytes";
   const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const sizes = ["Bytes", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
 }
 
 function isImageFile(filename) {
   const ext = getFileExtension(filename);
-  return ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext);
+  return ["jpg", "jpeg", "png", "gif", "svg", "webp"].includes(ext);
 }
 
 function scrollToBottom() {
@@ -221,17 +225,17 @@ function getRandomImageResponse() {
 
 // ================= MESSAGE FUNCTIONS =================
 function addMessage(text, isUser = false) {
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `message ${isUser ? "user-message" : "bot-message"}`;
 
-  const messageContent = document.createElement('div');
-  messageContent.className = 'message-content';
+  const messageContent = document.createElement("div");
+  messageContent.className = "message-content";
 
-  const messageText = document.createElement('p');
+  const messageText = document.createElement("p");
   messageText.innerHTML = text.replace(/\n/g, "<br>");
 
-  const messageTime = document.createElement('span');
-  messageTime.className = 'message-time';
+  const messageTime = document.createElement("span");
+  messageTime.className = "message-time";
   messageTime.textContent = getCurrentTime();
 
   messageContent.appendChild(messageText);
@@ -243,25 +247,25 @@ function addMessage(text, isUser = false) {
 }
 
 function addImageMessage(imageSrc, isUser = false) {
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `message ${isUser ? "user-message" : "bot-message"}`;
 
-  const messageContent = document.createElement('div');
-  messageContent.className = 'message-content';
+  const messageContent = document.createElement("div");
+  messageContent.className = "message-content";
 
-  const img = document.createElement('img');
+  const img = document.createElement("img");
   img.src = imageSrc;
-  img.className = 'message-image';
-  img.alt = 'Uploaded image';
-  img.loading = 'lazy';
+  img.className = "message-image";
+  img.alt = "Uploaded image";
+  img.loading = "lazy";
 
   // Add error handling for image
-  img.onerror = function() {
-    this.src = 'https://via.placeholder.com/150x150/1e293b/94a3b8?text=Image';
+  img.onerror = function () {
+    this.src = "https://via.placeholder.com/150x150/1e293b/94a3b8?text=Image";
   };
 
-  const messageTime = document.createElement('span');
-  messageTime.className = 'message-time';
+  const messageTime = document.createElement("span");
+  messageTime.className = "message-time";
   messageTime.textContent = getCurrentTime();
 
   messageContent.appendChild(img);
@@ -276,28 +280,28 @@ function addFileMessage(fileName, fileSize, isUser = false) {
   const extension = getFileExtension(fileName);
   const icon = getFileIcon(extension);
 
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `message ${isUser ? "user-message" : "bot-message"}`;
 
-  const messageContent = document.createElement('div');
-  messageContent.className = 'message-content';
+  const messageContent = document.createElement("div");
+  messageContent.className = "message-content";
 
-  const fileCard = document.createElement('div');
-  fileCard.className = 'file-card';
+  const fileCard = document.createElement("div");
+  fileCard.className = "file-card";
 
-  const fileIcon = document.createElement('div');
-  fileIcon.className = 'file-icon';
+  const fileIcon = document.createElement("div");
+  fileIcon.className = "file-icon";
   fileIcon.textContent = icon;
 
-  const fileInfo = document.createElement('div');
-  fileInfo.className = 'file-info';
+  const fileInfo = document.createElement("div");
+  fileInfo.className = "file-info";
 
-  const fileNameDiv = document.createElement('div');
-  fileNameDiv.className = 'file-name';
+  const fileNameDiv = document.createElement("div");
+  fileNameDiv.className = "file-name";
   fileNameDiv.textContent = fileName;
 
-  const fileSizeDiv = document.createElement('div');
-  fileSizeDiv.className = 'file-size';
+  const fileSizeDiv = document.createElement("div");
+  fileSizeDiv.className = "file-size";
   fileSizeDiv.textContent = formatFileSize(fileSize);
 
   fileInfo.appendChild(fileNameDiv);
@@ -305,8 +309,8 @@ function addFileMessage(fileName, fileSize, isUser = false) {
   fileCard.appendChild(fileIcon);
   fileCard.appendChild(fileInfo);
 
-  const messageTime = document.createElement('span');
-  messageTime.className = 'message-time';
+  const messageTime = document.createElement("span");
+  messageTime.className = "message-time";
   messageTime.textContent = getCurrentTime();
 
   messageContent.appendChild(fileCard);
@@ -319,19 +323,19 @@ function addFileMessage(fileName, fileSize, isUser = false) {
 
 // ================= TYPING INDICATOR =================
 function showTypingIndicator() {
-  const typingDiv = document.createElement('div');
-  typingDiv.className = 'message bot-message';
-  typingDiv.id = 'typingIndicator';
+  const typingDiv = document.createElement("div");
+  typingDiv.className = "message bot-message";
+  typingDiv.id = "typingIndicator";
 
-  const typingContent = document.createElement('div');
-  typingContent.className = 'message-content';
+  const typingContent = document.createElement("div");
+  typingContent.className = "message-content";
 
-  const typingIndicator = document.createElement('div');
-  typingIndicator.className = 'typing-indicator';
+  const typingIndicator = document.createElement("div");
+  typingIndicator.className = "typing-indicator";
 
   for (let i = 0; i < 3; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'typing-dot';
+    const dot = document.createElement("div");
+    dot.className = "typing-dot";
     typingIndicator.appendChild(dot);
   }
 
@@ -343,7 +347,7 @@ function showTypingIndicator() {
 }
 
 function removeTypingIndicator() {
-  const typingIndicator = document.getElementById('typingIndicator');
+  const typingIndicator = document.getElementById("typingIndicator");
   if (typingIndicator) {
     typingIndicator.remove();
   }
@@ -359,7 +363,7 @@ function getEmojiForOption(option) {
   }
 
   // Remove existing emojis
-  const optionWithoutEmoji = cleanOption.replace(/[^\w\s]/gi, '').trim();
+  const optionWithoutEmoji = cleanOption.replace(/[^\w\s]/gi, "").trim();
 
   // Partial match
   for (const [key, emoji] of Object.entries(QUICK_ACTION_EMOJIS)) {
@@ -371,8 +375,10 @@ function getEmojiForOption(option) {
     const optionWords = optionWithoutEmoji.split(/\s+/);
     const keyWords = key.split(/\s+/);
 
-    const matchingWords = keyWords.filter(word =>
-      optionWords.some(optWord => optWord.includes(word) || word.includes(optWord))
+    const matchingWords = keyWords.filter((word) =>
+      optionWords.some(
+        (optWord) => optWord.includes(word) || word.includes(optWord),
+      ),
     );
 
     if (matchingWords.length >= Math.max(1, keyWords.length - 1)) {
@@ -389,19 +395,22 @@ function updateQuickActions(options = []) {
   quickActionsContainer.innerHTML = "";
 
   if (options.length === 0) {
-    quickActionsContainer.classList.add('hidden');
+    quickActionsContainer.classList.add("hidden");
     return;
   }
 
-  quickActionsContainer.classList.remove('hidden');
-  quickActionsContainer.style.display = 'flex';
+  quickActionsContainer.classList.remove("hidden");
+  quickActionsContainer.style.display = "flex";
 
-  options.forEach(option => {
+  options.forEach((option) => {
     const btn = document.createElement("button");
     btn.className = "quick-action";
 
     const emoji = getEmojiForOption(option);
-    const cleanOptionText = option.replace(/[^\w\s]/gi, '').trim();
+    const cleanOptionText = option
+      .replace(/[–—]/g, "-") // ✅ convert EN/EM dash to hyphen
+      .replace(/[^\w\s<>.\-]/gi, "")
+      .trim();
     btn.textContent = emoji ? `${emoji} ${cleanOptionText}` : cleanOptionText;
 
     btn.onclick = () => {
@@ -422,13 +431,13 @@ async function getBotResponseFromBackend(userMessage) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        Accept: "application/json",
       },
       body: JSON.stringify({
         message: userMessage,
         userId: "guest_user",
-        timestamp: new Date().toISOString()
-      })
+        timestamp: new Date().toISOString(),
+      }),
     });
 
     if (!response.ok) {
@@ -452,9 +461,14 @@ function showHomeScreen() {
   updateQuickActions([]);
 
   // Clear any existing messages except home screen
-  const messages = chatMessages.querySelectorAll('.message, .planner-cards, .wishlist-cards');
-  messages.forEach(msg => {
-    if (!msg.classList.contains('home-screen') && !msg.classList.contains('faq-screen')) {
+  const messages = chatMessages.querySelectorAll(
+    ".message, .planner-cards, .wishlist-cards",
+  );
+  messages.forEach((msg) => {
+    if (
+      !msg.classList.contains("home-screen") &&
+      !msg.classList.contains("faq-screen")
+    ) {
       msg.remove();
     }
   });
@@ -473,30 +487,35 @@ function openFAQScreen() {
   }
 }
 
-function startChatFlow() {
+function startChatFlow(skipWelcome = false) {
   // Clear existing content except header
-  chatMessages.innerHTML = '';
+  chatMessages.innerHTML = "";
 
   // Re-add home screen structure (hidden)
-  const tempHome = document.createElement('div');
-  tempHome.className = 'home-screen';
-  tempHome.style.display = 'none';
+  const tempHome = document.createElement("div");
+  tempHome.className = "home-screen";
+  tempHome.style.display = "none";
   chatMessages.appendChild(tempHome);
 
-  const tempFaq = document.createElement('div');
-  tempFaq.className = 'faq-screen hidden';
+  const tempFaq = document.createElement("div");
+  tempFaq.className = "faq-screen hidden";
   chatMessages.appendChild(tempFaq);
 
   // Show input and hide footer
   if (chatInputArea) chatInputArea.classList.remove("hidden");
   if (chatFooterBrand) chatFooterBrand.style.display = "none";
 
-  // Add welcome messages
-  setTimeout(() => {
-    addMessage("Welcome to Wishlistz! 👋", false);
-    addMessage("I'm here to help you with shopping, gift planning, trip planning, and more! How can I assist you today? 💬", false);
-    showDefaultQuickActions();
-  }, 300);
+  // ✅ ADD CONDITION (nothing deleted)
+  if (!skipWelcome) {
+    setTimeout(() => {
+      addMessage("Welcome to Wishlistz! 👋", false);
+      addMessage(
+        "I'm here to help you with shopping, gift planning, trip planning, and more! How can I assist you today? 💬",
+        false,
+      );
+      showDefaultQuickActions();
+    }, 300);
+  }
 
   // Focus on input
   setTimeout(() => {
@@ -512,8 +531,8 @@ function renderFAQList(filter = "") {
 
   faqList.innerHTML = "";
 
-  const filtered = FAQ_QUESTIONS.filter(q =>
-    q.toLowerCase().includes(filter.toLowerCase())
+  const filtered = FAQ_QUESTIONS.filter((q) =>
+    q.toLowerCase().includes(filter.toLowerCase()),
   );
 
   if (filtered.length === 0) {
@@ -524,17 +543,22 @@ function renderFAQList(filter = "") {
     return;
   }
 
-  filtered.forEach(question => {
+  filtered.forEach((question) => {
     const item = document.createElement("div");
     item.className = "faq-item";
     item.textContent = question;
 
     item.addEventListener("click", () => {
-      startChatFlow();
-      setTimeout(() => {
-        messageInput.value = question;
-        handleSendMessage();
-      }, 100);
+      if (question === "I need help choosing clothes for myself.") {
+        startChatFlow(true); // ✅ skip welcome
+        startClothesFlow(); // ✅ start flow immediately
+      } else {
+        startChatFlow(); // existing behavior
+        setTimeout(() => {
+          messageInput.value = question;
+          handleSendMessage();
+        }, 100);
+      }
     });
 
     faqList.appendChild(item);
@@ -544,21 +568,38 @@ function renderFAQList(filter = "") {
 // ================= CHAT HANDLING =================
 async function handleSendMessage() {
   const messageText = messageInput.value.trim();
-  if (messageText === '') return;
+  if (messageText === "") return;
+
+  // ✅ CASE 1: Clothes flow active (Q&A mode)
+  if (window.isClothesFlowActive && window.isClothesFlowActive()) {
+    addMessage(messageText, true);
+    messageInput.value = "";
+    window.handleClothesAnswer(messageText);
+    return;
+  }
+
+  // ✅ CASE 2: Direct typed clothes request
+  if (isDirectClothesRequest(messageText)) {
+    addMessage(messageText, true);
+    messageInput.value = "";
+
+    await sendDirectClothesQuery(messageText);
+    return;
+  }
 
   addMessage(messageText, true);
-  messageInput.value = '';
+  messageInput.value = "";
   messageInput.focus();
 
   sendButton.disabled = true;
-  sendButton.style.opacity = '0.5';
-  sendButton.style.cursor = 'not-allowed';
+  sendButton.style.opacity = "0.5";
+  sendButton.style.cursor = "not-allowed";
 
   await sendBotResponse(messageText);
 
   sendButton.disabled = false;
-  sendButton.style.opacity = '1';
-  sendButton.style.cursor = 'pointer';
+  sendButton.style.opacity = "1";
+  sendButton.style.cursor = "pointer";
 }
 
 async function sendBotResponse(userMessage) {
@@ -566,7 +607,9 @@ async function sendBotResponse(userMessage) {
 
   try {
     // Simulate typing delay
-    await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 500));
+    await new Promise((resolve) =>
+      setTimeout(resolve, 800 + Math.random() * 500),
+    );
 
     const botReply = await getBotResponseFromBackend(userMessage);
     removeTypingIndicator();
@@ -574,7 +617,10 @@ async function sendBotResponse(userMessage) {
   } catch (error) {
     removeTypingIndicator();
     console.error("Error getting bot response:", error);
-    addMessage("I'm having trouble connecting right now. Please try again in a moment. ⚠️", false);
+    addMessage(
+      "I'm having trouble connecting right now. Please try again in a moment. ⚠️",
+      false,
+    );
     showDefaultQuickActions();
   }
 }
@@ -612,7 +658,9 @@ function renderPlannerResponse(planner) {
   }
 
   const container = document.createElement("div");
-  container.className = planner.title.includes("Wishlist") ? "wishlist-cards" : "planner-cards";
+  container.className = planner.title.includes("Wishlist")
+    ? "wishlist-cards"
+    : "planner-cards";
 
   const items = planner.items || [];
   if (items.length === 0) {
@@ -622,14 +670,20 @@ function renderPlannerResponse(planner) {
 
   items.forEach((item, index) => {
     const card = document.createElement("div");
-    card.className = planner.title.includes("Wishlist") ? "wishlist-card" : "planner-card";
+    card.className = planner.title.includes("Wishlist")
+      ? "wishlist-card"
+      : "planner-card";
 
-    const img = document.createElement('img');
-    img.src = item.imageUrl || item.images?.[0] || 'https://via.placeholder.com/150x150/1e293b/94a3b8?text=Product';
-    img.alt = item.name || 'Product';
-    img.loading = 'lazy';
-    img.onerror = function() {
-      this.src = 'https://via.placeholder.com/150x150/1e293b/94a3b8?text=Product';
+    const img = document.createElement("img");
+    img.src =
+      item.imageUrl ||
+      item.images?.[0] ||
+      "https://via.placeholder.com/150x150/1e293b/94a3b8?text=Product";
+    img.alt = item.name || "Product";
+    img.loading = "lazy";
+    img.onerror = function () {
+      this.src =
+        "https://via.placeholder.com/150x150/1e293b/94a3b8?text=Product";
     };
 
     if (planner.title.includes("Wishlist")) {
@@ -648,7 +702,7 @@ function renderPlannerResponse(planner) {
         ${item.price ? `<p class="price">₹${item.price}</p>` : ""}
         ${item.reason ? `<p class="reason">${item.reason}</p>` : ""}
       `;
-      card.insertBefore(img, card.querySelector('.card-title'));
+      card.insertBefore(img, card.querySelector(".card-title"));
     }
 
     container.appendChild(card);
@@ -669,7 +723,7 @@ function showDefaultQuickActions() {
     "Suggest a gift",
     "Plan a trip",
     "Plan a theme",
-    "Browse fashion"
+    "Browse fashion",
   ]);
 }
 
@@ -686,12 +740,20 @@ function applyQuickActions(botText) {
     return;
   }
 
-  if (text.includes("budget") || text.includes("price") || text.includes("cost")) {
+  if (
+    text.includes("budget") ||
+    text.includes("price") ||
+    text.includes("cost")
+  ) {
     updateQuickActions(["1000", "2000", "3000", "5000"]);
     return;
   }
 
-  if (text.includes("travel") || text.includes("trip") || text.includes("destination")) {
+  if (
+    text.includes("travel") ||
+    text.includes("trip") ||
+    text.includes("destination")
+  ) {
     updateQuickActions(["Delhi", "Goa", "Manali", "Bangalore"]);
     return;
   }
@@ -701,12 +763,20 @@ function applyQuickActions(botText) {
     return;
   }
 
-  if (text.includes("season") || text.includes("month") || text.includes("weather")) {
+  if (
+    text.includes("season") ||
+    text.includes("month") ||
+    text.includes("weather")
+  ) {
     updateQuickActions(["Summer", "Winter", "Monsoon", "Any"]);
     return;
   }
 
-  if (text.includes("work trip") || text.includes("casual") || text.includes("purpose")) {
+  if (
+    text.includes("work trip") ||
+    text.includes("casual") ||
+    text.includes("purpose")
+  ) {
     updateQuickActions(["Work", "Casual", "Vacation", "Business"]);
     return;
   }
@@ -716,18 +786,35 @@ function applyQuickActions(botText) {
     return;
   }
 
-  if (text.includes("event for") || text.includes("for kids") || text.includes("for adults")) {
+  if (
+    text.includes("event for") ||
+    text.includes("for kids") ||
+    text.includes("for adults")
+  ) {
     updateQuickActions(["Kids", "Adults", "Mixed", "All ages"]);
     return;
   }
 
-  if (text.includes("vibe") || text.includes("style") || text.includes("theme")) {
+  if (
+    text.includes("vibe") ||
+    text.includes("style") ||
+    text.includes("theme")
+  ) {
     updateQuickActions(["Fun", "Classy", "Traditional", "Modern"]);
     return;
   }
 
-  if (text.includes("image") || text.includes("file") || text.includes("upload") || text.includes("photo")) {
-    updateQuickActions(["Show me more", "Add to wishlist", "Share with friend"]);
+  if (
+    text.includes("image") ||
+    text.includes("file") ||
+    text.includes("upload") ||
+    text.includes("photo")
+  ) {
+    updateQuickActions([
+      "Show me more",
+      "Add to wishlist",
+      "Share with friend",
+    ]);
     return;
   }
 
@@ -742,24 +829,39 @@ function handleFileUpload(event) {
 
   // Validate file size (max 5MB)
   if (file.size > 5 * 1024 * 1024) {
-    addMessage("❌ File size exceeds 5MB limit. Please choose a smaller file.", true);
-    fileInput.value = '';
+    addMessage(
+      "❌ File size exceeds 5MB limit. Please choose a smaller file.",
+      true,
+    );
+    fileInput.value = "";
     return;
   }
 
   // Validate file type
-  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf', 
-                       'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-                       'text/plain'];
-  if (!allowedTypes.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png|pdf|doc|docx|txt)$/i)) {
-    addMessage("❌ File type not supported. Please upload images, PDFs, or documents.", true);
-    fileInput.value = '';
+  const allowedTypes = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "text/plain",
+  ];
+  if (
+    !allowedTypes.includes(file.type) &&
+    !file.name.match(/\.(jpg|jpeg|png|pdf|doc|docx|txt)$/i)
+  ) {
+    addMessage(
+      "❌ File type not supported. Please upload images, PDFs, or documents.",
+      true,
+    );
+    fileInput.value = "";
     return;
   }
 
   if (isImageFile(file.name)) {
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       addImageMessage(e.target.result, true);
 
       showTypingIndicator();
@@ -769,7 +871,7 @@ function handleFileUpload(event) {
         applyQuickActions("image uploaded");
       }, 1000);
     };
-    reader.onerror = function() {
+    reader.onerror = function () {
       addMessage("❌ Failed to read image file. Please try again.", true);
     };
     reader.readAsDataURL(file);
@@ -784,63 +886,65 @@ function handleFileUpload(event) {
     }, 1000);
   }
 
-  fileInput.value = '';
+  fileInput.value = "";
 }
 
 // ================= EVENT LISTENERS =================
-attachButton.addEventListener('click', () => {
+attachButton.addEventListener("click", () => {
   fileInput.click();
 });
 
-fileInput.addEventListener('change', handleFileUpload);
+fileInput.addEventListener("change", handleFileUpload);
 
-sendButton.addEventListener('click', handleSendMessage);
+sendButton.addEventListener("click", handleSendMessage);
 
-messageInput.addEventListener('keypress', (event) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
+messageInput.addEventListener("keypress", (event) => {
+  if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
     handleSendMessage();
   }
 });
 
-messageInput.addEventListener('input', () => {
-  const isEmpty = messageInput.value.trim() === '';
+messageInput.addEventListener("input", () => {
+  const isEmpty = messageInput.value.trim() === "";
   sendButton.disabled = isEmpty;
-  sendButton.style.opacity = isEmpty ? '0.5' : '1';
-  sendButton.style.cursor = isEmpty ? 'not-allowed' : 'pointer';
+  sendButton.style.opacity = isEmpty ? "0.5" : "1";
+  sendButton.style.cursor = isEmpty ? "not-allowed" : "pointer";
 });
 
 // Theme toggle
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-  const isLightMode = document.body.classList.contains('light-mode');
-  themeToggle.textContent = isLightMode ? '🌞' : '🌓';
-  themeToggle.title = isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode';
-  localStorage.setItem('chatTheme', isLightMode ? 'light' : 'dark');
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  const isLightMode = document.body.classList.contains("light-mode");
+  themeToggle.textContent = isLightMode ? "🌞" : "🌓";
+  themeToggle.title = isLightMode
+    ? "Switch to Dark Mode"
+    : "Switch to Light Mode";
+  localStorage.setItem("chatTheme", isLightMode ? "light" : "dark");
 });
 
 // Open/Close chat
-minimizedChat.addEventListener('click', () => {
-  chatContainer.style.display = 'flex';
-  minimizedChat.classList.add('hidden');
+minimizedChat.addEventListener("click", () => {
+  chatContainer.style.display = "flex";
+  minimizedChat.classList.add("hidden");
 
   if (isMobile()) {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   }
 
   setTimeout(() => {
-    if (messageInput && !chatInputArea.classList.contains('hidden')) {
+    if (messageInput && !chatInputArea.classList.contains("hidden")) {
       messageInput.focus();
     }
   }, 300);
 });
 
-minimizeButton.addEventListener('click', () => {
+minimizeButton.addEventListener("click", () => {
   if (isMobile()) {
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
   }
-  chatContainer.style.display = 'none';
-  minimizedChat.classList.remove('hidden');
+  chatContainer.style.display = "none";
+  minimizedChat.classList.remove("hidden");
 });
 
 // FAQ Event Listeners
@@ -868,9 +972,9 @@ if (faqSearchInput) {
   });
 
   faqSearchInput.addEventListener("keypress", (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
-      const firstItem = faqList.querySelector('.faq-item');
+      const firstItem = faqList.querySelector(".faq-item");
       if (firstItem) {
         firstItem.click();
       }
@@ -885,11 +989,11 @@ function isMobile() {
 
 function initializeChat() {
   // Load saved theme
-  const savedTheme = localStorage.getItem('chatTheme');
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-mode');
-    themeToggle.textContent = '🌞';
-    themeToggle.title = 'Switch to Dark Mode';
+  const savedTheme = localStorage.getItem("chatTheme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+    themeToggle.textContent = "🌞";
+    themeToggle.title = "Switch to Dark Mode";
   }
 
   // Initialize FAQ list
@@ -900,22 +1004,22 @@ function initializeChat() {
 
   // Auto-open on desktop, minimized on mobile
   if (isMobile()) {
-    chatContainer.style.display = 'none';
-    minimizedChat.classList.remove('hidden');
+    chatContainer.style.display = "none";
+    minimizedChat.classList.remove("hidden");
   } else {
-    chatContainer.style.display = 'flex';
-    minimizedChat.classList.add('hidden');
+    chatContainer.style.display = "flex";
+    minimizedChat.classList.add("hidden");
   }
 
   // Initial send button state
   sendButton.disabled = true;
-  sendButton.style.opacity = '0.5';
-  sendButton.style.cursor = 'not-allowed';
+  sendButton.style.opacity = "0.5";
+  sendButton.style.cursor = "not-allowed";
 
   // Add CSS for typing indicator if not already present
-  if (!document.querySelector('#typing-css')) {
-    const style = document.createElement('style');
-    style.id = 'typing-css';
+  if (!document.querySelector("#typing-css")) {
+    const style = document.createElement("style");
+    style.id = "typing-css";
     style.textContent = `
       .typing-indicator {
         display: flex;
@@ -945,42 +1049,51 @@ function initializeChat() {
 }
 
 // Handle window resize
-window.addEventListener('resize', () => {
-  if (!isMobile() && chatContainer.classList.contains('fullscreen')) {
-    chatContainer.classList.remove('fullscreen');
-    document.body.style.overflow = '';
+window.addEventListener("resize", () => {
+  if (!isMobile() && chatContainer.classList.contains("fullscreen")) {
+    chatContainer.classList.remove("fullscreen");
+    document.body.style.overflow = "";
   }
 });
 
 // Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
+document.addEventListener("keydown", (e) => {
   // Ctrl + / to focus input
-  if (e.ctrlKey && e.key === '/') {
+  if (e.ctrlKey && e.key === "/") {
     e.preventDefault();
-    if (messageInput && !chatInputArea.classList.contains('hidden')) {
+    if (messageInput && !chatInputArea.classList.contains("hidden")) {
       messageInput.focus();
     }
   }
 
   // Escape to minimize chat
-  if (e.key === 'Escape' && chatContainer.style.display === 'flex') {
+  if (e.key === "Escape" && chatContainer.style.display === "flex") {
     minimizeButton.click();
   }
 });
 
 // ================= INITIALIZE =================
-document.addEventListener('DOMContentLoaded', initializeChat);
+document.addEventListener("DOMContentLoaded", initializeChat);
 
 // Handle page visibility
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden && messageInput && !chatInputArea.classList.contains('hidden')) {
+document.addEventListener("visibilitychange", () => {
+  if (
+    !document.hidden &&
+    messageInput &&
+    !chatInputArea.classList.contains("hidden")
+  ) {
     messageInput.focus();
   }
 });
 
 // Error handling for images
-window.addEventListener('error', function(e) {
-  if (e.target.tagName === 'IMG') {
-    e.target.src = 'https://via.placeholder.com/150x150/1e293b/94a3b8?text=Image';
-  }
-}, true);
+window.addEventListener(
+  "error",
+  function (e) {
+    if (e.target.tagName === "IMG") {
+      e.target.src =
+        "https://via.placeholder.com/150x150/1e293b/94a3b8?text=Image";
+    }
+  },
+  true,
+);
